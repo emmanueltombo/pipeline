@@ -2,7 +2,7 @@ pipeline{
   agent any
   
   tools{
-    jdk 'jdk-1.8.0_302'
+    jdk 'java-1.8.0-openjdk'
     maven 'maven 3.5.2'
     dockerTool 'docker-latest'
   }
