@@ -2,13 +2,12 @@ pipeline{
   agent any
   
   options{
-    timestamp()
+    timestamps()
   }
   stages{
     stage("test"){
       steps{
-        sh "sudo mkdir /home/pipelineProject"
-        sh "cd /home/pipelineProject/"
+        sh "cd /home"
         sh "git clone https://github.com/emmanueltombo/pipeline.git"
       }
     }
