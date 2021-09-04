@@ -1,9 +1,20 @@
 pipeline{
   agent any
   
+  tools{
+    jdk 'openjdk-8-jdk'
+    maven 'maven 3.5.2'
+    dockerTool 'docker-latest'
+  }
+  
   options{
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    disableConcurrentBuilds()
+    timeout(time: 1, unit: 'HOURS')
     timestamps()
   }
+  
+  
   stages{
     stage("test"){
       steps{
