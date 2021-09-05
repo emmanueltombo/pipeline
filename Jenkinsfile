@@ -11,7 +11,6 @@ pipeline {
     }
 
     environment {
-        POM_VERSION = getVersion()
         JAR_NAME = getJarName()
     }
 
