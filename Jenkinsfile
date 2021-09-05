@@ -28,9 +28,17 @@ pipeline {
             }
         }
 
-        stage('Push Image to ECR') {}
+        stage('Push Image to ECR') {
+            steps{
+                echo "${POM_VERSION}"
+            }
+        }
 
-        stage('Deploy in ECS') {}
+        stage('Deploy in ECS') {
+            steps{
+                echo "${POM_VERSION}"
+            }
+        }
     }
 
     post {}
