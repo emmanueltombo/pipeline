@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Build & Test') {
             steps{
-                withCredentials([string(credentialsId: 'creasmit_aws_ecr_dev', variable: 'AWS_ECR_URL')]) {
+                withCredentials([string(credentialsId: 'creasmit_aws_ecr_dev', variable: 'AWS_ECR_ACCESS_ECR_KEY_ID')]) {
                     script {
                         docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
                      }
