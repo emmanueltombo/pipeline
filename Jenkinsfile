@@ -6,8 +6,8 @@ pipeline {
     }
 
     tools {
-        maven 'Maven 3.5.2' 
         jdk 'jdk8'
+        maven 'M3' 
     }
 
     environment {
@@ -41,5 +41,5 @@ pipeline {
         }
     }
 
-    post {}
+#!post {}
 }
