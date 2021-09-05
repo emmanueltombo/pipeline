@@ -20,17 +20,19 @@ pipeline {
     stages {
         stage('Build & Test') {
             steps{
-                withCredentials([string(credentialsId: 'AWS_ECR_SECRET_ACCESS_KEY', variable: 'AWS_ECR_URL')]) {
-                    script {
-                        docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
-                     }
+              withMaven(options: [artifactsPublisher(), mavenLinkerPublisher(), dependenciesFingerprintPublisher(disabled: true), jacocoPublisher(disabled: true), junitPublisher(disabled: true)]) {
+                    sh "mvn -B -U clean package"
                 }
             }
         }
 
         stage('Build Docker Image') {
-            steps{
-                echo "${POM_VERSION}"
+              steps{
+                withCredentials([string(credentialsId: 'AWS_ECR_SECRET_ACCESS_KEY', variable: 'AWS_ECR_URL')]) {
+                    script {
+                        docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
+                     }
+                }
             }
         }
 
