@@ -30,9 +30,9 @@ pipeline {
 
         stage('Build Docker Image') {
               steps{
-                withCredentials([string(credentialsId: 'AWS_ECR_SECRET_ACCESS_KEY', variable: 'AWS_ECR_URL')]) {
+                withCredentials([string(credentialsId: 'AWS_ECR_SECRET_ACCESS_KEY', variable: '')]) {
                     script {
-                        docker.build("216618523254.dkr.ecr.us-east-2.amazonaws.com/finex:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
+                        docker.build(${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
                      }
                 }
             }
