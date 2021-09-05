@@ -1,8 +1,13 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any
 
     options {
-      timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+        timeout(time: 1, unit: 'HOURS')
+        timestamps()
     }
 
     tools {
