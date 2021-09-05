@@ -17,11 +17,15 @@ pipeline {
 
     stages {
         stage('Build & Test') {
-            echo "Salut hey"
+            steps{
+                 echo "Salut hey"
+            }
         }
 
         stage('Build Docker Image') {
-            echo ${POM_VERSION}
+            steps{
+                echo ${POM_VERSION}
+            }
         }
 
         stage('Push Image to ECR') {}
