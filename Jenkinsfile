@@ -6,8 +6,8 @@ pipeline {
     }
 
     tools {
-        jdk 'jdk-1.8.0_302'
-        maven 'maven 3.5.2' 
+        jdk 'jdk8'
+        maven 'm3' 
     }
 
     environment {
