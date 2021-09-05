@@ -11,15 +11,18 @@ pipeline {
     }
 
     environment {
-        JAR_NAME = "pipelineDemo"
+        POM_VERSION=getVersion()
+        JAR_NAME = getJarName()
+        AWS_ECR_REGION='us-east-2'
+        AWS_ECR_URL='216618523254.dkr.ecr.us-east-2.amazonaws.com/finex';  
     }
 
     stages {
         stage('Build & Test') {
             steps{
-                withCredentials([string(credentialsId: 'AWS_ECR_SECRET_ACCESS_KEY', variable: 'AWS_ACCESS_KEY_ID')]) {
+                withCredentials([string(credentialsId: 'AWS_ECR_SECRET_ACCESS_KEY', variable: 'AWS_ECR_URL')]) {
                     script {
-                        docker.build("${AWS_ACCESS_KEY_ID}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
+                        docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
                      }
                 }
             }
@@ -45,4 +48,22 @@ pipeline {
     }
 
 //post {}
+}
+
+//functions def
+//get jar name of project
+def getJarName(){
+    def jarName = getName() + '-' + getVersion() + '.jar'
+    echo "jarName: ${jarName}"
+    return  jarName
+}
+
+def getVersion() {
+    def pom = readMavenPom file: './pom.xml'
+    return pom.version
+}
+
+def getName() {
+    def pom = readMavenPom file: './pom.xml'
+    return pom.name
 }
