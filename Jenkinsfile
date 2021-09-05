@@ -17,7 +17,6 @@ pipeline {
         POM_VERSION=getVersion()
         JAR_NAME = getJarName()
         AWS_ECR_REGION='us-east-2'
-        AWS_ECR_URL='216618523254.dkr.ecr.us-east-2.amazonaws.com/finex';  
     }
 
     stages {
