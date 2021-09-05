@@ -10,14 +10,19 @@ pipeline {
         jdk 'jdk8'
     }
 
-    environment {}
+    environment {
+        POM_VERSION = getVersion()
+        JAR_NAME = getJarName()
+    }
 
     stages {
         stage('Build & Test') {
             echo "Salut hey"
         }
 
-        stage('Build Docker Image') {}
+        stage('Build Docker Image') {
+            echo ${POM_VERSION}
+        }
 
         stage('Push Image to ECR') {}
 
