@@ -18,7 +18,11 @@ pipeline {
     stages {
         stage('Build & Test') {
             steps{
-                 echo "Salut hey"
+                withCredentials([string(credentialsId: 'creasmit_aws_ecr_dev', variable: 'AWS_ECR_URL')]) {
+                    script {
+                        docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
+                     }
+                }
             }
         }
 
