@@ -1,7 +1,9 @@
 pipeline {
     agent any
 
-    options {}
+    options {
+      timestamps()
+    }
 
     tools {
         maven 'Maven 3.5.2' 
