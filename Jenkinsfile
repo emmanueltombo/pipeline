@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps{
-                echo ${POM_VERSION}
+                echo "${POM_VERSION}"
             }
         }
 
