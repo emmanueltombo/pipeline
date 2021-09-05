@@ -11,7 +11,9 @@ pipeline {
     environment {}
 
     stages {
-        stage('Build & Test') {}
+        stage('Build & Test') {
+            echo "Salut hey"
+        }
 
         stage('Build Docker Image') {}
 
