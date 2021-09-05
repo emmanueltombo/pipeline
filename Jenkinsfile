@@ -11,7 +11,7 @@ pipeline {
     }
 
     environment {
-        JAR_NAME = getJarName()
+        JAR_NAME = "pipelineDemo"
     }
 
     stages {
