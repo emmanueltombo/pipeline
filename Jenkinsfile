@@ -41,7 +41,7 @@ pipeline {
         stage('Push Image to ECR') {
             steps{
                  withCredentials([string(credentialsId: 'AWS_ECR_SECRET_ACCESS_KEY', variable: '')]) {
-                    withAWS(region: "${AWS_ECR_REGION}", credentials: 'AWS_ECR_SECRET_ACCESS_KEY') {
+                    withAWS(region: "${AWS_ECR_REGION}", credentials: 'creasmit_aws_ecr_dev') {
                         script {
                             //def login = ecrLogin()
                             //sh('#!/bin/sh -e\n' + "${login}") // hide logging
