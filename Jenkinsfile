@@ -36,9 +36,11 @@ pipeline {
 
         stage('Push Image to ECR') {
             steps{
-                 script {
+                withCredentials([string(credentialsId:'AWS_ECR_SECRET_ACCESS_KEY']){
+                    script {
                     docker.image("${AWS_ECR_URL}:${POM_VERSION}").push()
                   }
+                }
             }
         }
 
