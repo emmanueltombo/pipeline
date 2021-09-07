@@ -17,6 +17,7 @@ pipeline {
         POM_VERSION=getVersion()
         JAR_NAME = getJarName()
         AWS_ECR_REGION='us-east-2'
+        AWS_ECS_TASK_DEFINITION='pipeline-demo-task-definition'
     }
 
     stages {
