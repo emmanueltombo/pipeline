@@ -18,6 +18,14 @@ pipeline {
         JAR_NAME = getJarName()
         AWS_ECR_REGION='us-east-2'
         AWS_ECS_TASK_DEFINITION='pipeline-demo-task-definition'
+        AWS_ECS_COMPATIBILITY='EC2'
+        AWS_ECS_NETWORK_MODE='awsvpc'
+        AWS_ECS_CPU='256'
+        AWS_ECS_MEMORY='256'
+        AWS_ECS_CLUSTER='finex-clusterr'
+        AWS_ECS_SERVICE='pipeline-demo-service'
+        
+        
     }
 
     stages {
